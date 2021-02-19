@@ -1,6 +1,6 @@
 Assignment 1, Calculator
 ========================
-C#, .NET, Visual Studio
------------------------
+C#, .NET, Microsoft Visual Studio Community 2019
+------------------------------------------------
 
-A simple console based menu driven calculator.
+A simple console based calculator.

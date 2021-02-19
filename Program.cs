@@ -6,11 +6,12 @@ namespace Assignment_1_Calculator
     {
         static void Main(string[] args)
         {
-            char userInput;
-
             while (true)
             {
+                char userSelection;
+
                 Console.Clear();
+
                 Console.WriteLine("Assignment 1, Calculator");
                 Console.WriteLine("************************\n");
                 Console.WriteLine("Press A for Addition");
@@ -20,10 +21,14 @@ namespace Assignment_1_Calculator
                 Console.WriteLine("Press E for Exponentiation");
                 Console.WriteLine("Press R for Radical\n");
                 Console.WriteLine("Press X to exit program");
-                userInput = Console.ReadKey(true).KeyChar;
+
+                userSelection = Console.ReadKey(true).KeyChar;
+
                 Console.Clear();
 
-                switch (userInput)
+                if (userSelection == 'x' || userSelection == 'X') break;
+
+                switch (userSelection)
                 {
                     case 'A':
                     case 'a':
@@ -55,8 +60,6 @@ namespace Assignment_1_Calculator
                         Radical();
                         break;
                 }
-
-                if (userInput == 'x' || userInput == 'X') break;
 
                 Console.WriteLine("\nPress any key to continue");
                 Console.ReadKey(true);
@@ -126,7 +129,7 @@ namespace Assignment_1_Calculator
             r = AskUserFor("radicand");
             i = AskUserFor("index");
 
-            Console.WriteLine($"\nThe {i} root of {r} is: {Math.Pow(r, 1/i)}");
+            Console.WriteLine($"\nThe {i} root of {r} is: {Math.Pow(r, 1 / i)}");
         }
 
         private static double AskUserFor(string description, bool rejectZero = false)
@@ -134,7 +137,7 @@ namespace Assignment_1_Calculator
             double value;
 
             Console.Write($"Enter {description}: ");
- 
+
             while (true)
             {
                 try
