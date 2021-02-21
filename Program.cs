@@ -4,7 +4,7 @@ namespace Assignment_1_Calculator
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             while (true)
             {
@@ -68,85 +68,84 @@ namespace Assignment_1_Calculator
 
         private static void Addition()
         {
-            double t1;
-            double t2;
+            double term1;
+            double term2;
 
-            t1 = AskUserFor("first term");
-            t2 = AskUserFor("second term");
+            term1 = AskUserFor("first term");
+            term2 = AskUserFor("second term");
 
-            Console.WriteLine($"\nThe sum of {t1} and {t2} is: {t1 + t2}");
+            Console.WriteLine($"\nThe sum of {term1} and {term2} is: {term1 + term2}");
         }
 
         private static void Subtraction()
         {
-            double m;
-            double s;
+            double minuend;
+            double subtrahend;
 
-            m = AskUserFor("minuend");
-            s = AskUserFor("subtrahend");
+            minuend = AskUserFor("minuend");
+            subtrahend = AskUserFor("subtrahend");
 
-            Console.WriteLine($"\nThe difference of {m} and {s} is: {m - s}");
+            Console.WriteLine($"\nThe difference of {minuend} and {subtrahend} is: {minuend - subtrahend}");
         }
 
         private static void Division()
         {
-            double dd;
-            double dr;
+            double dividend;
+            double divisor;
 
-            dd = AskUserFor("dividend");
-            dr = AskUserFor("divisor", true);
+            dividend = AskUserFor("dividend");
+            divisor = AskUserFor("divisor", true);
 
-            Console.WriteLine($"\nThe quotient of {dd} and {dr} is: {dd / dr}");
+            Console.WriteLine($"\nThe quotient of {dividend} and {divisor} is: {dividend / divisor}");
         }
 
         private static void Multiplication()
         {
-            double f1;
-            double f2;
+            double factor1;
+            double factor2;
 
-            f1 = AskUserFor("first factor");
-            f2 = AskUserFor("second factor");
+            factor1 = AskUserFor("first factor");
+            factor2 = AskUserFor("second factor");
 
-            Console.WriteLine($"\nThe product of {f1} and {f2} is: {f1 * f2}");
+            Console.WriteLine($"\nThe product of {factor1} and {factor2} is: {factor1 * factor2}");
         }
 
         private static void Exponentiation()
         {
-            double b;
-            double e;
+            double bas;
+            double exponent;
 
-            b = AskUserFor("base");
-            e = AskUserFor("exponent");
+            bas = AskUserFor("base");
+            exponent = AskUserFor("exponent");
 
-            Console.WriteLine($"\nThe exponentiation of {b} and {e} is: {Math.Pow(b, e)}");
+            Console.WriteLine($"\nThe exponentiation of {bas} and {exponent} is: {Math.Pow(bas, exponent)}");
         }
 
         private static void Radical()
         {
-            double r;
-            double i;
+            double radicand;
+            double index;
 
-            r = AskUserFor("radicand");
-            i = AskUserFor("index");
+            radicand = AskUserFor("radicand");
+            index = AskUserFor("index");
 
-            Console.WriteLine($"\nThe {i} root of {r} is: {Math.Pow(r, 1 / i)}");
+            Console.WriteLine($"\nThe {index} root of {radicand} is: {Math.Pow(radicand, 1 / index)}");
         }
 
         private static double AskUserFor(string description, bool rejectZero = false)
         {
-            double value;
-
-            Console.Write($"Enter {description}: ");
+            double valueFromUser;
 
             while (true)
             {
                 try
                 {
-                    value = Convert.ToDouble(Console.ReadLine());
+                    Console.Write($"Enter {description}: ");
+                    valueFromUser = Convert.ToDouble(Console.ReadLine());
 
-                    if (value == 0 && rejectZero)
+                    if (valueFromUser == 0 && rejectZero)
                     {
-                        Console.Write("Zero is not accepted, try again: ");
+                        Console.WriteLine("Zero is not accepted, try again.");
                     }
                     else
                     {
@@ -155,11 +154,11 @@ namespace Assignment_1_Calculator
                 }
                 catch
                 {
-                    Console.Write("Invalid input, try again: ");
+                    Console.WriteLine("Input not a number, try again.");
                 }
             }
 
-            return value;
+            return valueFromUser;
         }
     }
 }
