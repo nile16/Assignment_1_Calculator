@@ -2,7 +2,7 @@
 
 namespace Assignment_1_Calculator
 {
-    class Program
+    public class Calculator
     {
         public static void Main()
         {
@@ -32,32 +32,68 @@ namespace Assignment_1_Calculator
                 {
                     case 'A':
                     case 'a':
-                        Addition();
+                        double term1;
+                        double term2;
+
+                        term1 = AskUserFor("first term");
+                        term2 = AskUserFor("second term");
+
+                        Console.WriteLine(Addition(term1, term2));
                         break;
 
                     case 'S':
                     case 's':
-                        Subtraction();
+                        double minuend;
+                        double subtrahend;
+
+                        minuend = AskUserFor("minuend");
+                        subtrahend = AskUserFor("subtrahend");
+
+                        Console.WriteLine(Subtraction(minuend, subtrahend));
                         break;
 
                     case 'D':
                     case 'd':
-                        Division();
+                        double dividend;
+                        double divisor;
+
+                        dividend = AskUserFor("dividend");
+                        divisor = AskUserFor("divisor", true);
+
+                        Console.WriteLine(Division(dividend, divisor));
                         break;
 
                     case 'M':
                     case 'm':
-                        Multiplication();
+                        double factor1;
+                        double factor2;
+
+                        factor1 = AskUserFor("first factor");
+                        factor2 = AskUserFor("second factor");
+
+                        Console.WriteLine(Multiplication(factor1, factor2));
                         break;
 
                     case 'E':
                     case 'e':
-                        Exponentiation();
+                        double bas;
+                        double exponent;
+
+                        bas = AskUserFor("base");
+                        exponent = AskUserFor("exponent");
+
+                        Console.WriteLine(Exponentiation(bas, exponent));
                         break;
 
                     case 'R':
                     case 'r':
-                        Radical();
+                        double radicand;
+                        double index;
+
+                        radicand = AskUserFor("radicand");
+                        index = AskUserFor("index");
+
+                        Console.WriteLine(Radical(radicand, index));
                         break;
                 }
 
@@ -66,70 +102,35 @@ namespace Assignment_1_Calculator
             }
         }
 
-        private static void Addition()
+        public static string Addition(double term1, double term2)
         {
-            double term1;
-            double term2;
-
-            term1 = AskUserFor("first term");
-            term2 = AskUserFor("second term");
-
-            Console.WriteLine($"\nThe sum of {term1} and {term2} is: {term1 + term2}");
+            return $"The sum of {term1} and {term2} is: {term1 + term2}";
         }
 
-        private static void Subtraction()
+        public static string Subtraction(double minuend, double subtrahend)
         {
-            double minuend;
-            double subtrahend;
-
-            minuend = AskUserFor("minuend");
-            subtrahend = AskUserFor("subtrahend");
-
-            Console.WriteLine($"\nThe difference of {minuend} and {subtrahend} is: {minuend - subtrahend}");
+            return $"The difference of {minuend} and {subtrahend} is: {minuend - subtrahend}";
         }
 
-        private static void Division()
+        public static string Division(double dividend, double divisor)
         {
-            double dividend;
-            double divisor;
-
-            dividend = AskUserFor("dividend");
-            divisor = AskUserFor("divisor", true);
-
-            Console.WriteLine($"\nThe quotient of {dividend} and {divisor} is: {dividend / divisor}");
+            return $"The quotient of {dividend} and {divisor} is: {dividend / divisor}";
         }
 
-        private static void Multiplication()
+        public static string Multiplication(double factor1, double factor2)
         {
-            double factor1;
-            double factor2;
-
-            factor1 = AskUserFor("first factor");
-            factor2 = AskUserFor("second factor");
-
-            Console.WriteLine($"\nThe product of {factor1} and {factor2} is: {factor1 * factor2}");
+            return $"The product of {factor1} and {factor2} is: {factor1 * factor2}";
         }
 
-        private static void Exponentiation()
+        public static string Exponentiation(double bas, double exponent)
         {
-            double bas;
-            double exponent;
 
-            bas = AskUserFor("base");
-            exponent = AskUserFor("exponent");
-
-            Console.WriteLine($"\nThe exponentiation of {bas} and {exponent} is: {Math.Pow(bas, exponent)}");
+            return $"The exponentiation of {bas} and {exponent} is: {Math.Pow(bas, exponent)}";
         }
 
-        private static void Radical()
+        public static string Radical(double radicand, double index)
         {
-            double radicand;
-            double index;
-
-            radicand = AskUserFor("radicand");
-            index = AskUserFor("index");
-
-            Console.WriteLine($"\nThe {index} root of {radicand} is: {Math.Pow(radicand, 1 / index)}");
+            return $"The {index} root of {radicand} is: {Math.Pow(radicand, 1 / index)}";
         }
 
         private static double AskUserFor(string description, bool rejectZero = false)
