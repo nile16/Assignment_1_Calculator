@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Assignment_1_Calculator
 {
@@ -32,68 +33,32 @@ namespace Assignment_1_Calculator
                 {
                     case 'A':
                     case 'a':
-                        double term1;
-                        double term2;
-
-                        term1 = AskUserFor("first term");
-                        term2 = AskUserFor("second term");
-
-                        Console.WriteLine(Addition(term1, term2));
+                        Console.WriteLine(Addition(AskUserFor("first term"), AskUserFor("second term")));
                         break;
 
                     case 'S':
                     case 's':
-                        double minuend;
-                        double subtrahend;
-
-                        minuend = AskUserFor("minuend");
-                        subtrahend = AskUserFor("subtrahend");
-
-                        Console.WriteLine(Subtraction(minuend, subtrahend));
+                        Console.WriteLine(Subtraction(AskUserFor("minuend"), AskUserFor("subtrahend")));
                         break;
 
                     case 'D':
                     case 'd':
-                        double dividend;
-                        double divisor;
-
-                        dividend = AskUserFor("dividend");
-                        divisor = AskUserFor("divisor", true);
-
-                        Console.WriteLine(Division(dividend, divisor));
+                        Console.WriteLine(Division(AskUserFor("dividend"), AskUserFor("divisor", true)));
                         break;
 
                     case 'M':
                     case 'm':
-                        double factor1;
-                        double factor2;
-
-                        factor1 = AskUserFor("first factor");
-                        factor2 = AskUserFor("second factor");
-
-                        Console.WriteLine(Multiplication(factor1, factor2));
+                        Console.WriteLine(Multiplication(AskUserFor("first factor"), AskUserFor("second factor")));
                         break;
 
                     case 'E':
                     case 'e':
-                        double bas;
-                        double exponent;
-
-                        bas = AskUserFor("base");
-                        exponent = AskUserFor("exponent");
-
-                        Console.WriteLine(Exponentiation(bas, exponent));
+                        Console.WriteLine(Exponentiation(AskUserFor("base"), AskUserFor("exponent")));
                         break;
 
                     case 'R':
                     case 'r':
-                        double radicand;
-                        double index;
-
-                        radicand = AskUserFor("radicand");
-                        index = AskUserFor("index");
-
-                        Console.WriteLine(Radical(radicand, index));
+                        Console.WriteLine(Radical(AskUserFor("radicand"), AskUserFor("index")));
                         break;
                 }
 
@@ -107,15 +72,53 @@ namespace Assignment_1_Calculator
             return $"The sum of {term1} and {term2} is: {term1 + term2}";
         }
 
+        public static string Addition(double[] terms)
+        {
+            if (terms.Length >= 2)
+            {
+                string termsString = string.Join(", ", terms.Select(x => x.ToString()).ToArray());
+
+                return $"The sum of {termsString} is: {terms.Sum()}";
+            }
+            else
+            {
+                return "The array must contain at least two elements.";
+            }
+        }
+
         public static string Subtraction(double minuend, double subtrahend)
         {
             return $"The difference of {minuend} and {subtrahend} is: {minuend - subtrahend}";
         }
 
+        public static string Subtraction(double[] terms)
+        {
+            if (terms.Length >= 2)
+            {
+                string termsString = string.Join(", ", terms.Select(x => x.ToString()).ToArray());
+
+                terms[0] = -terms[0];
+
+                return $"The difference of {termsString} is: {-terms.Sum()}";
+            }
+            else
+            {
+                return "The array must contain at least two elements.";
+            }
+        }
+
         public static string Division(double dividend, double divisor)
         {
-            return $"The quotient of {dividend} and {divisor} is: {dividend / divisor}";
+            if (divisor != 0)
+            {
+                return $"The quotient of {dividend} and {divisor} is: {dividend / divisor}";
+            }
+            else
+            {
+                return "Division by zero is not allowed.";
+            }
         }
+
 
         public static string Multiplication(double factor1, double factor2)
         {
@@ -141,8 +144,12 @@ namespace Assignment_1_Calculator
             {
                 try
                 {
+                    string stringFromUser;
+
                     Console.Write($"Enter {description}: ");
-                    valueFromUser = Convert.ToDouble(Console.ReadLine());
+                    stringFromUser = Console.ReadLine();
+                    stringFromUser = stringFromUser.Replace('.',',');
+                    valueFromUser = Convert.ToDouble(stringFromUser);
 
                     if (valueFromUser == 0 && rejectZero)
                     {
